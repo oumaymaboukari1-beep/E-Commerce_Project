@@ -31,16 +31,12 @@ db.serialize(() => {
   )`);
 
   db.run(`CREATE TABLE IF NOT EXISTS orders (
-
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-    productId INTEGER,
-
-    qty INTEGER,
-
-    customer TEXT
-
-  )`);
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  productId INTEGER,
+  qty INTEGER,
+  customer TEXT,
+  date TEXT
+)`);
 
   // Insérer admin si absent
 
