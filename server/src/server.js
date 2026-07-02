@@ -4,7 +4,7 @@ const { login, register } = require('./services/auth-service');
 const { listProducts } = require('./services/catalog-service');
 const { placeOrder } = require('./services/orders-service');
 const { askLLM } = require('./services/llm-service');
- 
+const { getOrders } = require('./services/orders-service');
 const app = express();
 app.use(bodyParser.json());
  
@@ -39,6 +39,12 @@ app.post('/chat', async (req, res) => {
   const { message } = req.body;
   const reply = await askLLM(message);
   res.json({ reply });
+});
+
+// Historique des achats
+app.get('/orders/:customer', (req, res) => {
+  const customer = req.params.customer;
+  getOrders(customer, (orders) => res.json(orders));
 });
  
 app.listen(3001, () => console.log("Fake server with LLM running on port 3001"));
